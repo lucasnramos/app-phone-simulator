@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { App } from './models/app.model';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = '5th-kind-test heloooo';
+  app: App = {
+    appName: 'This is my first app',
+    appVersion: '7.0',
+    appContact: 'This is the app contact information',
+  };
 }
