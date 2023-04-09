@@ -1,7 +1,7 @@
 <h1>Hello world</h1>
 
-<ng-container class="spinner-container" *ngIf="isLoading">
-  <mat-spinner diameter="28"></mat-spinner>
+<ng-container *ngIf="isLoading">
+  <app-loading-indicator></app-loading-indicator>
 </ng-container>
 
 <ng-container *ngFor="let item of appList$ | async">
