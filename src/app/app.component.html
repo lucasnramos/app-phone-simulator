@@ -5,7 +5,8 @@
 </ng-container>
 
 <div class="app-list-container">
-  <ng-container *ngFor="let item of appList$ | async">
+  <ng-container *ngFor="let item of obs | async">
     <app-card [app]="item"></app-card>
   </ng-container>
 </div>
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
