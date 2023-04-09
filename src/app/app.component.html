@@ -4,6 +4,8 @@
   <app-loading-indicator></app-loading-indicator>
 </ng-container>
 
-<ng-container *ngFor="let item of appList$ | async">
-  <app-card [app]="item"></app-card>
-</ng-container>
+<div class="app-list-container">
+  <ng-container *ngFor="let item of appList$ | async">
+    <app-card [app]="item"></app-card>
+  </ng-container>
+</div>
