@@ -1,2 +1,5 @@
 <h1>Hello world</h1>
-<app-card [app]="app"></app-card>
+
+<ng-container *ngFor="let item of appList$ | async">
+  <app-card [app]="item"></app-card>
+</ng-container>

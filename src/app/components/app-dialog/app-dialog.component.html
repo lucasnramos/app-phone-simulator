@@ -1,9 +1,11 @@
-<h1 mat-dialog-title>{{ data.appName }}</h1>
-<div mat-dialog-content>
-  <p>{{ data.appContact }}</p>
-  <p>{{ data.appVersion }}</p>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onClose()">Close</button>
-  <button mat-button cdkFocusInitial>Ok</button>
+<div class="app-dialog">
+  <h1 mat-dialog-title>{{ data.appName }}</h1>
+  <div mat-dialog-content>
+    <p>{{ data.appContact }}</p>
+    <p>{{ data.appVersion }}</p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onClose()">Close</button>
+    <button mat-button cdkFocusInitial>Ok</button>
+  </div>
 </div>
