@@ -25,15 +25,15 @@ export class AppComponent implements OnInit {
     private appService: AppService,
     private changeDetectorRef: ChangeDetectorRef
   ) {
-    this.appList$ = this.appService.apps;
     this.dataSource = new MatTableDataSource();
+    this.appList$ = this.dataSource.connect();
   }
 
   ngOnInit(): void {
     this.changeDetectorRef.detectChanges();
     this.dataSource.paginator = this.paginator;
-    this.obs = this.dataSource.connect();
-    this.appList$.pipe(take(1)).subscribe((data) => {
+
+    this.appService.apps.pipe(take(1)).subscribe((data) => {
       this.dataSource.data = data;
       this.isLoading = false;
     });
