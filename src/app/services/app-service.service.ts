@@ -20,4 +20,10 @@ export class AppService {
   get apps() {
     return this._apps.pipe(delay(Math.random() * 2000));
   }
+
+  addApp(app: App) {
+    const apps = this._apps.getValue();
+    apps.unshift(app);
+    this._apps.next(apps);
+  }
 }

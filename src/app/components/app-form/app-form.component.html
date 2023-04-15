@@ -1,0 +1,7 @@
+<form [formGroup]="appForm" (ngSubmit)="onSubmit()">
+  <input matInput placeholder="App Name" formControlName="appName" />
+  <input matInput placeholder="App Version" formControlName="appVersion" />
+  <input matInput placeholder="Contact" formControlName="appContact" />
+  <mat-error>Error testing</mat-error>
+  <input type="submit" value="Add App" />
+</form>

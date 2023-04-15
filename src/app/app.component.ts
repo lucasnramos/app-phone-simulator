@@ -11,15 +11,13 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  appList$: Observable<Array<App>>;
-  isLoading = true;
-
   @ViewChild(MatPaginator)
   paginator: MatPaginator = {} as MatPaginator;
 
-  dataSource: MatTableDataSource<App>;
+  appList$: Observable<Array<App>>;
+  isLoading = true;
 
-  obs: any;
+  dataSource: MatTableDataSource<App>;
 
   constructor(
     private appService: AppService,
