@@ -11,9 +11,10 @@ import { AppService } from 'src/app/services/app-service.service';
 
 function validateAppVersion(): ValidatorFn {
   const versionRegex = /\d{1,2}\.\d{1,2}\.\d{1,2}/;
+
   return (control: AbstractControl): ValidationErrors | null => {
     const isCorrectVersionPattern = versionRegex.test(control.value);
-    console.log(isCorrectVersionPattern, control.value);
+
     if (isCorrectVersionPattern) {
       return null;
     } else {
@@ -44,7 +45,7 @@ export class AppFormComponent {
   private setupForm() {
     this.appForm = this.fb.group({
       appName: ['', [Validators.required]],
-      appVersion: ['', [Validators.required, validateAppVersion]],
+      appVersion: ['', [Validators.required, validateAppVersion()]],
       appContact: ['', [Validators.required]],
     });
   }

@@ -2,21 +2,24 @@
   <mat-form-field>
     <input matInput formControlName="appName" placeholder="Card Name" />
     <mat-error *ngIf="appForm.get('appName')?.invalid">
-      Please enter a valid email
+      This field is required
     </mat-error>
   </mat-form-field>
 
   <mat-form-field>
     <input matInput formControlName="appVersion" placeholder="Version" />
-    <mat-error *ngIf="appForm.get('appVersion')?.invalid">
-      Please enter a valid email
+    <mat-error *ngIf="appForm.get('appVersion')?.errors?.['required']">
+      This field is required
+    </mat-error>
+    <mat-error *ngIf="appForm.get('appVersion')?.errors?.['versionPattern']">
+      Wrong version pattern
     </mat-error>
   </mat-form-field>
 
   <mat-form-field>
     <input matInput formControlName="appContact" placeholder="Contact" />
-    <mat-error *ngIf="appForm.get('appContact')?.invalid">
-      Please enter a valid email
+    <mat-error *ngIf="appForm.get('appContact')?.errors?.['required']">
+      This field is required
     </mat-error>
   </mat-form-field>
 
