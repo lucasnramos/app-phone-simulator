@@ -37,8 +37,8 @@ export class AppFormComponent {
 
   onSubmit() {
     if (this.appForm.valid) {
-      console.log('form is correcto, submittoooooo', this.appForm.value);
       this.appService.addApp(this.appForm.value);
+      this.appForm.reset();
     }
   }
 
