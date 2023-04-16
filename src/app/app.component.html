@@ -1,14 +1,16 @@
-<h1>Hello world</h1>
+<div class="app-wrapper">
+  <h1>Hello world</h1>
 
-<app-form></app-form>
+  <app-form></app-form>
 
-<ng-container *ngIf="isLoading">
-  <app-loading-indicator></app-loading-indicator>
-</ng-container>
-
-<div class="app-list-container">
-  <ng-container *ngFor="let item of appList$ | async">
-    <app-card [app]="item"></app-card>
+  <ng-container *ngIf="isLoading">
+    <app-loading-indicator></app-loading-indicator>
   </ng-container>
+
+  <div class="app-list-container">
+    <ng-container *ngFor="let item of appList$ | async">
+      <app-card [app]="item"></app-card>
+    </ng-container>
+  </div>
+  <mat-paginator [pageSizeOptions]="[9]"></mat-paginator>
 </div>
-<mat-paginator [pageSizeOptions]="[9]"></mat-paginator>
