@@ -1,7 +1,24 @@
 <form [formGroup]="appForm" (ngSubmit)="onSubmit()">
-  <input matInput placeholder="App Name" formControlName="appName" />
-  <input matInput placeholder="App Version" formControlName="appVersion" />
-  <input matInput placeholder="Contact" formControlName="appContact" />
-  <mat-error>Error testing</mat-error>
-  <input type="submit" value="Add App" />
+  <mat-form-field>
+    <input matInput formControlName="appName" placeholder="Card Name" />
+    <mat-error *ngIf="appForm.get('appName')?.invalid">
+      Please enter a valid email
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput formControlName="appVersion" placeholder="Version" />
+    <mat-error *ngIf="appForm.get('appVersion')?.invalid">
+      Please enter a valid email
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput formControlName="appContact" placeholder="Contact" />
+    <mat-error *ngIf="appForm.get('appContact')?.invalid">
+      Please enter a valid email
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Add Card</button>
 </form>

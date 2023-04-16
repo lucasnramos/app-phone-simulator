@@ -7,8 +7,20 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { App } from 'src/app/models/app.model';
 import { AppService } from 'src/app/services/app-service.service';
+
+function validateAppVersion(): ValidatorFn {
+  const versionRegex = /\d{1,2}\.\d{1,2}\.\d{1,2}/;
+  return (control: AbstractControl): ValidationErrors | null => {
+    const isCorrectVersionPattern = versionRegex.test(control.value);
+    console.log(isCorrectVersionPattern, control.value);
+    if (isCorrectVersionPattern) {
+      return null;
+    } else {
+      return { versionPattern: true };
+    }
+  };
+}
 
 @Component({
   selector: 'app-form',
@@ -23,8 +35,8 @@ export class AppFormComponent {
   }
 
   onSubmit() {
-    console.log('form submi', this.appForm);
-    if (this.appForm.status === 'VALID') {
+    if (this.appForm.valid) {
+      console.log('form is correcto, submittoooooo', this.appForm.value);
       this.appService.addApp(this.appForm.value);
     }
   }
@@ -32,17 +44,8 @@ export class AppFormComponent {
   private setupForm() {
     this.appForm = this.fb.group({
       appName: ['', [Validators.required]],
-      appVersion: ['', [Validators.required, this.validateAppVersion]],
+      appVersion: ['', [Validators.required, validateAppVersion]],
       appContact: ['', [Validators.required]],
     });
-  }
-
-  private validateAppVersion(): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      if (control) {
-        return null;
-      }
-      return null;
-    };
   }
 }
