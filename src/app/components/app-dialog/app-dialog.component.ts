@@ -16,4 +16,8 @@ export class AppDialogComponent {
   onClose() {
     this.dialogRef.close();
   }
+
+  onEditCard() {
+    this.dialogRef.close(this.data);
+  }
 }

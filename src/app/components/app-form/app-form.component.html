@@ -23,5 +23,15 @@
     </mat-error>
   </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit">Add Card</button>
+  <button mat-raised-button color="primary" type="submit">
+    {{ isEditing ? "Edit" : "Add Card" }}
+  </button>
+  <button
+    mat-raised-button
+    color="secondary"
+    *ngIf="isEditing"
+    (click)="onCancelEditing()"
+  >
+    Cancel
+  </button>
 </form>

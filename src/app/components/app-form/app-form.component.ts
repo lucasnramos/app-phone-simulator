@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -28,18 +28,33 @@ function validateAppVersion(): ValidatorFn {
   templateUrl: './app-form.component.html',
   styleUrls: ['./app-form.component.scss'],
 })
-export class AppFormComponent {
+export class AppFormComponent implements AfterViewInit {
   appForm!: FormGroup;
+  isEditing: boolean;
 
   constructor(private fb: FormBuilder, private appService: AppService) {
+    this.isEditing = false;
     this.setupForm();
+  }
+
+  ngAfterViewInit(): void {
+    this.appService.editingApp.subscribe((app) => {
+      const hasApp = Object.keys(app).length > 1;
+      if (hasApp) {
+        this.isEditing = true;
+        this.appForm.setValue(app);
+      }
+    });
   }
 
   onSubmit() {
     if (this.appForm.valid) {
-      this.appService.addApp(this.appForm.value);
-      this.appForm.reset();
+      this.addOrUpdateApp();
     }
+  }
+
+  onCancelEditing() {
+    this.resetForm();
   }
 
   private setupForm() {
@@ -48,5 +63,22 @@ export class AppFormComponent {
       appVersion: ['', [Validators.required, validateAppVersion()]],
       appContact: ['', [Validators.required]],
     });
+  }
+
+  private addOrUpdateApp() {
+    if (this.isEditing) {
+      this.appService.updateApp(this.appForm.value);
+    } else {
+      this.appService.addApp(this.appForm.value);
+    }
+    this.resetForm();
+  }
+
+  private resetForm() {
+    this.appForm.reset();
+    Object.keys(this.appForm.controls).forEach((name) =>
+      this.appForm.controls[name].setErrors(null)
+    );
+    this.isEditing = false;
   }
 }
